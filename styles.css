@@ -1,0 +1,38 @@
+/* F1 Racing Website Styles */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Racing+Sans+One&display=swap');
+
+:root {
+    --f1-red: #ff1801;
+    --f1-dark: #15151e;
+    --f1-gray: #38383d;
+    --f1-white: #ffffff;
+    --accent-blue: #00d2be;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:'Orbitron', sans-serif ;
+   background-color:var(--f1-dark);
+   color:var(--f1-white);
+   overflow-x :hidden
+}
+
+/* Loader Styles */
+.loader{
+position :fixed ;
+top :0 ;left :0 ;width :100% ;height :100% ;
+background:#15151e ;
+z-index :9999 ;
+display flex ;justify-content:center ;align-items:center 
+}
+.loader-content{text-align:center }
+.f
