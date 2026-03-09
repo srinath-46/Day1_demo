@@ -3,207 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>F1 Racing - Experience Speed</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>F1 2026 - Experience Speed</title>
+    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Racing+Sans+One&display=swap" rel="stylesheet">
+    <!-- Three.js & GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
 </head>
 <body>
-    <!-- Loading Screen -->
+    <!-- Preloader -->
     <div id="loader" class="loader">
         <div class="loader-content">
-            <div class="f1-logo-loader"></div>
-            <h2>LOADING...</h2>
+            <h1 class="loader-title">F1</h1>
+            <div class="progress-bar"><div class="progress" id="progress"></div></div>
+            <p>Loading Experience...</p>
         </div>
     </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
-        <div class nav-logo>F1</div ul 
-        li><a href="#" class active>Home</a></li
-        ><li><a href="#">Teams</a></li
-        ><li><a href="#">Drivers</a></li
-        ><li><a href="#">Schedule</a></li
-        ><li><a href="#">Standings</a></li></ul >
-        
+        <div class="logo">F1</div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#dashboard">Teams & Drivers</a></li>
+            <li><a href="#season">Season</a></li>
+        </ul>
+    </nav>
+
+    <!-- 3D Canvas Background -->
+    <canvas id="bg-canvas"></canvas>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="hero section">
+            <div class="hero-content">
+                <h1 class="hero-title">EXPERIENCE<br><span class="highlight">SPEED</span></h1>
+                <p class="hero-subtitle">The apex of motorsport engineering. Feel the downforce.</p>
+                <a href="#dashboard" class="cta-btn">Explore Grid</a>
+            </div>
             
-    
+            <div class="hero-car-container">
+                 <img src="f1-car.png" alt="3D F1 Car" class="hero-car" id="hero-car">
+                 <div class="glow-effect"></div>
+            </div>
+        </section>
+
+        <!-- Animated Dashboard Section -->
+        <section id="dashboard" class="dashboard section">
+            <div class="section-header">
+                <h2>CONSTRUCTORS & <span class="highlight">DRIVERS</span></h2>
+                <p>Select a team to view their latest lineup and stats.</p>
+            </div>
+
+            <div class="dashboard-container">
+                <!-- Sidebar with Team Buttons -->
+                <div class="teams-sidebar" id="teams-list">
+                    <!-- Buttons injected by JS -->
+                </div>
+
+                <!-- Main Team Display Panel -->
+                <div class="team-details-panel">
+                    <div class="team-info" id="team-info">
+                        <div class="team-header">
+                            <div>
+                                <h3 id="display-team-name">Loading...</h3>
+                                <p id="display-team-base" class="team-base">Base</p>
+                            </div>
+                            <div class="team-logo-placeholder" id="team-color-accent"></div>
+                        </div>
+                        
+                        <div class="drivers-container">
+                            <!-- Driver 1 -->
+                            <div class="driver-card" id="driver1-card">
+                                <div class="driver-number" id="driver1-num">0</div>
+                                <div class="driver-info">
+                                    <h4 id="driver1-name">Driver 1</h4>
+                                    <p>Points: <span id="driver1-pts">0</span></p>
+                                </div>
+                            </div>
+                            <!-- Driver 2 -->
+                            <div class="driver-card" id="driver2-card">
+                                <div class="driver-number" id="driver2-num">0</div>
+                                <div class="driver-info">
+                                    <h4 id="driver2-name">Driver 2</h4>
+                                    <p>Points: <span id="driver2-pts">0</span></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="car-stats-visual">
+                            <h4>Car Performance Metrics</h4>
+                            <div class="car-stat-bar">
+                                <span>Top Speed</span>
+                                <div class="bar-track"><div class="bar-fill" id="stat-speed"></div></div>
+                            </div>
+                            <div class="car-stat-bar">
+                                <span>Acceleration</span>
+                                <div class="bar-track"><div class="bar-fill" id="stat-accel"></div></div>
+                            </div>
+                            <div class="car-stat-bar">
+                                <span>Downforce / Aero</span>
+                                <div class="bar-track"><div class="bar-fill" id="stat-aero"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         
-    
-    
-
-    
-        
-            
-                
-                    
-                
-            
-        
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
-I see an error in my previous message where I accidentally included some garbled text in the HTML structure. Let me provide a clean, complete implementation:
-
-```html
-<!DOCTYPE html>
-
-<html lang=
-
-"
-
-en">
-
-<head>
-
-    
-
-<meta charset=
-
-"
-
-UTF-8">
-
-    
-
-<meta name=
-
-"
-
-viewport" content=
-
-"
-
-width=device-width, initial-scale=1.0">
-
-    
-
-<link rel=
-
-"
-
-stylesheet" href=
-
-"
-
-styles.css">
-
-    
-
-<link 
-
-href
-
-="
-https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Racing+Sans+One&display=swap"
-rel=
-"
-stylesheet">
-
-  
-
-<script src=
-"
-https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  
-
-<script src=
-"
-https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-
-  
-
-<script src=
-"
-app.js"></script>
-
-  
-<
-/
-
-head>
-
-
-<body>
-
-
-  
-<!-- Loading Screen -->
-
-  
-<div id
-
-="
-loader" 
-
-class
-
-="
-loader">
-
-    
-<div 
-
-class
-
-="
-loader-content">
-
-      
-<div 
-
-class
-
-="
-f1-logo-loader"></
- div>
-
-      
-<h2>LOADING...</h2
-    
-  
-
-
-
-I'm encountering persistent formatting issues that are disrupting my code structure and preventing clean implementation of the web design.
-<minimax:tool_call>
-invoke_name=\"create_file\"\n                \"path\">\"index.html\"\n                \"content\">\"<!DOCTYPE html>\n<html lang=\\"en\\">\n<head>\n \\t<meta charset=\\"UTF-8\\">\n \\t<meta name=\\"viewport\\" content=\\"width=device-width, initial-scale=1.0\\">\n \\t<title>F1 Racing - Experience Speed</title>\n \\t<link rel=\\"stylesheet\\" href=\\"styles.css\\">\n \\t<link rel=\\"preconnect\\" href=\\"https://fonts.googleapis.com\\">\n \\t<link rel=\\"preconnect\\" href=\\"https://fonts.gstatic.com\\) crossorigin>\n \\t<link href =\\(googleapis_link)\\|(gstatic_link)\\|(font_link) type =(\\'text/css\\) media =(\\'all\\) /> \\\\r\\\\ntarget_url_placeholder_4 = \\\"(http|https):\\\\\\\\/\\\\\\\\/(www \\\\.)?googleapis\\\\\\\\.(com|it|es|de|fr|co.uk)\\\\/?.*$\\\\r\\\\ntarget_url_placeholder_5 = \\\"(http|https):\\\\\\/+\\.cloudflare.+$\\|\|\"(http| https):\\/+\\.jsdelivr.+$\"\", "metadata": {"NOTE": "This is a complex regex pattern used for URL validation and matching across multiple formats including Google APIs, CDN links from Cloudflare and jsDelivr.", "regex_type": "URL Validation Patterns"}, "text_grain": "\"link\", \"href\": \""}, {"id": 6, "string_to_be_found": "\"font-family: 'Racing Sans One', cursive;\", "context_before": ".hero-title {\", "context_after\": "\"color: #ff1801;"}, {"id": 7, "string_to_be_found\": "'Racing Sans One', cursive", "context_before\": "@import url(", ""}
-
-Did you mean this instead?
-
-Would you like me to use **ThreeScene** or **Canvas** instead?
-
-I can see there's been some confusion about which approach to take for your F₁ website's visual elements.
-
-Let me clarify what I'm seeing:
-
-You have existing files (home.html,
- home.js) but they're essentially empty templates waiting for implementation.
-
-Given your request for realistic **dynamic** and **realistic**, I'd strongly recommend using ThreeScene as it offers superior capabilities compared to Canvas—particularly when it comes to handling complex lighting/shadows while maintaining performance across devices through its built-in optimization features like frustum culling & level-of-detail rendering systems."
-
----
-
-## Implementation Plan Summary:
-
-### Files To Create:
-- `index.html` – Main landing page featuring immersive ThreeJS scene + interactive UI components (team cards/driver lineup)
-- `styles.css` – Advanced CSS styling incorporating custom properties & keyframe animations plus responsive breakpoints 
-- `app.js` – Core JavaScript logic managing ThreeJS scene setup/animation loops + GSAP-powered transitions/interactions + data management system handling team/driver information dynamically loaded from JSON structures → enabling easy updates without modifying core codebase!
-
-### Key Features Included:
-✓ Dynamic racing car model rendered within interactive environment ✓ Real-time camera controls allowing users orbit around vehicle ✓ Particle system simulating tire smoke during acceleration phases ✓ Ambient lighting setup replicating actual garage conditions ✓ Smooth GSAP-powered UI transitions between sections → Professional finish!
-
----
-
-Ready when you are! Just confirm approval so we can dive straight into building this out together!
+        <!-- Extraneous space for scrolling -->
+        <section id="season" class="season section">
+            <div class="section-header">
+                <h2>SEASON <span class="highlight">CALENDAR</span></h2>
+                <p>Coming Soon...</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+</html>
