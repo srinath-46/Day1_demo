@@ -1,116 +1,4 @@
-// --- Data for Teams & Drivers ---
-const f1Teams = [
-    {
-        id: 'redbull',
-        name: 'Red Bull Racing',
-        base: 'Milton Keynes, UK',
-        color: '#3671C6',
-        drivers: [
-            { name: 'Max Verstappen', number: 1, pts: 400 },
-            { name: 'Sergio Perez', number: 11, pts: 250 }
-        ],
-        stats: { speed: 96, accel: 98, aero: 95 }
-    },
-    {
-        id: 'mercedes',
-        name: 'Mercedes-AMG',
-        base: 'Brackley, UK',
-        color: '#27F4D2',
-        drivers: [
-            { name: 'George Russell', number: 63, pts: 220 },
-            { name: 'Lewis Hamilton', number: 44, pts: 215 }
-        ],
-        stats: { speed: 92, accel: 90, aero: 93 }
-    },
-    {
-        id: 'ferrari',
-        name: 'Scuderia Ferrari',
-        base: 'Maranello, Italy',
-        color: '#E8002D',
-        drivers: [
-            { name: 'Charles Leclerc', number: 16, pts: 280 },
-            { name: 'Carlos Sainz', number: 55, pts: 260 }
-        ],
-        stats: { speed: 95, accel: 94, aero: 88 }
-    },
-    {
-        id: 'mclaren',
-        name: 'McLaren',
-        base: 'Woking, UK',
-        color: '#FF8000',
-        drivers: [
-            { name: 'Lando Norris', number: 4, pts: 290 },
-            { name: 'Oscar Piastri', number: 81, pts: 200 }
-        ],
-        stats: { speed: 93, accel: 91, aero: 96 }
-    },
-    {
-        id: 'astonmartin',
-        name: 'Aston Martin',
-        base: 'Silverstone, UK',
-        color: '#229971',
-        drivers: [
-            { name: 'Fernando Alonso', number: 14, pts: 180 },
-            { name: 'Lance Stroll', number: 18, pts: 60 }
-        ],
-        stats: { speed: 88, accel: 89, aero: 92 }
-    },
-    {
-        id: 'alpine',
-        name: 'Alpine F1 Team',
-        base: 'Enstone, UK',
-        color: '#FF87BC',
-        drivers: [
-            { name: 'Pierre Gasly', number: 10, pts: 85 },
-            { name: 'Esteban Ocon', number: 31, pts: 80 }
-        ],
-        stats: { speed: 85, accel: 87, aero: 84 }
-    },
-    {
-        id: 'williams',
-        name: 'Williams Racing',
-        base: 'Grove, UK',
-        color: '#37BEDD',
-        drivers: [
-            { name: 'Alexander Albon', number: 23, pts: 45 },
-            { name: 'Logan Sargeant', number: 2, pts: 5 }
-        ],
-        stats: { speed: 90, accel: 80, aero: 78 }
-    },
-    {
-        id: 'rb',
-        name: 'Visa Cash App RB',
-        base: 'Faenza, Italy',
-        color: '#1534CC',
-        drivers: [
-            { name: 'Yuki Tsunoda', number: 22, pts: 35 },
-            { name: 'Daniel Ricciardo', number: 3, pts: 25 }
-        ],
-        stats: { speed: 84, accel: 86, aero: 82 }
-    },
-    {
-        id: 'kicksauber',
-        name: 'Kick Sauber',
-        base: 'Hinwil, Switzerland',
-        color: '#52E252',
-        drivers: [
-            { name: 'Valtteri Bottas', number: 77, pts: 10 },
-            { name: 'Zhou Guanyu', number: 24, pts: 5 }
-        ],
-        stats: { speed: 82, accel: 80, aero: 75 }
-    },
-    {
-        id: 'haas',
-        name: 'Haas F1 Team',
-        base: 'Kannapolis, USA',
-        color: '#B6BABD',
-        drivers: [
-            { name: 'Nico Hulkenberg', number: 27, pts: 20 },
-            { name: 'Kevin Magnussen', number: 20, pts: 15 }
-        ],
-        stats: { speed: 83, accel: 85, aero: 79 }
-    }
-];
+let f1Teams = [];
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- Preloader & Initialization ---
@@ -129,32 +17,50 @@ document.addEventListener('DOMContentLoaded', () => {
                     loader.style.display = 'none';
                     initAnimations();
                     initThreeJS();
+                    fetchF1Data(); // Fetch data after loader hides
                 }
             });
         }
     });
 
-    // --- Dashboard Setup & Logic ---
-    const teamsList = document.getElementById('teams-list');
-    
-    // Auto-generate buttons
-    f1Teams.forEach((team, index) => {
-        const btn = document.createElement('button');
-        btn.className = `team-btn ${index === 0 ? 'active' : ''}`;
-        btn.setAttribute('data-teamid', team.id);
-        btn.innerHTML = `<span class="team-color" style="background: ${team.color};"></span> ${team.name}`;
-        
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            updateDashboard(team);
-        });
-        
-        teamsList.appendChild(btn);
-    });
+    // --- Fetch Data from Backend ---
+    async function fetchF1Data() {
+        try {
+            const response = await fetch('/api/teams');
+            if (!response.ok) throw new Error('Network response was not ok');
+            f1Teams = await response.json();
+            buildDashboard();
+        } catch (error) {
+            console.error("Failed to load F1 data:", error);
+            document.getElementById('display-team-name').textContent = "Error loading data. Is the server running?";
+        }
+    }
 
-    // Initial Dashboard Population
-    updateDashboard(f1Teams[0]);
+    // --- Dashboard Setup & Logic ---
+    function buildDashboard() {
+        if (!f1Teams || f1Teams.length === 0) return;
+
+        const teamsList = document.getElementById('teams-list');
+        
+        // Auto-generate buttons
+        f1Teams.forEach((team, index) => {
+            const btn = document.createElement('button');
+            btn.className = `team-btn ${index === 0 ? 'active' : ''}`;
+            btn.setAttribute('data-teamid', team.id);
+            btn.innerHTML = `<span class="team-color" style="background: ${team.color};"></span> ${team.name}`;
+            
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.team-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                updateDashboard(team);
+            });
+            
+            teamsList.appendChild(btn);
+        });
+
+        // Initial Dashboard Population
+        updateDashboard(f1Teams[0]);
+    }
 
     function updateDashboard(team) {
         // Timeline for smooth unified transition
